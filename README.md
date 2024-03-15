@@ -12,11 +12,17 @@ This project aiming to provide a simple and easy to use web based VSCode server 
 ```bash
 # RELEASE: openvscode-server-v1.87.0 (2024-03-12) 
 # BUILD
-docker buildx build --platform linux/amd64 -f Dockerfile -t alperreha/vsdevcenter:empty --build-arg RELEASE_TAG=openvscode-server-v1.87.0 .
+docker buildx build -f Dockerfile \
+    --platform linux/amd64 \
+    -t alperreha/vsdevcenter:empty \
+    --build-arg RELEASE_TAG=openvscode-server-v1.87.0 .
 
 # RUN with ENV TOKEN=12345672345678
 export TOKEN=MY_SECRET_TOKEN
-docker run --name vsdevcenter -p 3000:3000 -e TOKEN=$TOKEN --platform linux/amd64 -d alperreha/vsdevcenter:empty
+docker run --name vsdevcenter -p 3000:3000 \
+    -e TOKEN=$TOKEN \
+    --platform linux/amd64 \
+    -d alperreha/vsdevcenter:empty
 
 # when container is running, you can access the web ui with the following url
 http://localhost:3000/?tkn=$TOKEN  
